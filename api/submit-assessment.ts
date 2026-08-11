@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { ZodError } from "zod";
-import { assessmentRequestSchema } from "../server/assessment-schema";
-import { buildAssessmentNote } from "../server/assessment-note";
+import { assessmentRequestSchema } from "../server/assessment-schema.js";
+import { buildAssessmentNote } from "../server/assessment-note.js";
 import {
   createDeal,
   createDealNote,
@@ -12,13 +12,13 @@ import {
   PipedriveError,
   resolveStageId,
   rollbackDeal,
-} from "../server/pipedrive";
+} from "../server/pipedrive.js";
 import {
   assertSameOrigin,
   enforceSpamAndRateLimits,
   markSubmissionCompleted,
   RequestSecurityError,
-} from "../server/request-security";
+} from "../server/request-security.js";
 
 interface ApiRequest extends IncomingMessage {
   body?: unknown;
