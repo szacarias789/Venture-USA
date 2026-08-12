@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 675" role="img" aria-labelledby="title description">
+  <title id="title">Running track viewed from above</title>
+  <desc id="description">A curved stadium running track with lanes, markings, and a finish line under subtle lights</desc>
+  <defs>
+    <linearGradient id="stadium" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090625"/>
+      <stop offset=".5" stop-color="#150a56"/>
+      <stop offset="1" stop-color="#080d0b"/>
+    </linearGradient>
+    <radialGradient id="light-left" cx="0" cy="0" r="1" gradientTransform="translate(95 78) rotate(38) scale(380 300)">
+      <stop stop-color="#fcec62" stop-opacity=".34"/>
+      <stop offset=".38" stop-color="#9e91ff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#150a56" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="light-right" cx="0" cy="0" r="1" gradientTransform="translate(812 102) rotate(142) scale(360 280)">
+      <stop stop-color="#fff" stop-opacity=".24"/>
+      <stop offset=".45" stop-color="#7667dc" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#150a56" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="track" x1=".05" y1=".05" x2=".95" y2=".95">
+      <stop stop-color="#bc5b42"/>
+      <stop offset=".47" stop-color="#9f402f"/>
+      <stop offset="1" stop-color="#6f2c2c"/>
+    </linearGradient>
+    <linearGradient id="infield" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#172f28"/>
+      <stop offset=".48" stop-color="#0f241e"/>
+      <stop offset="1" stop-color="#091712"/>
+    </linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fff" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".08"/>
+    </linearGradient>
+    <filter id="track-shadow" x="-20%" y="-25%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity=".48"/>
+    </filter>
+    <filter id="soft-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <clipPath id="track-shape">
+      <path fill-rule="evenodd" d="M231 137h438c104 0 188 84 188 188v25c0 104-84 188-188 188H231C127 538 43 454 43 350v-25c0-104 84-188 188-188Zm16 112c-49 0-89 40-89 89s40 89 89 89h406c49 0 89-40 89-89s-40-89-89-89H247Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="900" height="675" fill="url(#stadium)"/>
+  <rect width="900" height="675" fill="url(#light-left)"/>
+  <rect width="900" height="675" fill="url(#light-right)"/>
+
+  <g opacity=".3">
+    <path d="M0 101h900M0 574h900" stroke="#fff" stroke-opacity=".16"/>
+    <path d="M66 0v675M834 0v675" stroke="#fff" stroke-opacity=".12"/>
+    <circle cx="66" cy="101" r="7" fill="#fcec62" filter="url(#soft-glow)"/>
+    <circle cx="834" cy="101" r="7" fill="#fff" filter="url(#soft-glow)"/>
+    <circle cx="66" cy="574" r="7" fill="#fff" filter="url(#soft-glow)"/>
+    <circle cx="834" cy="574" r="7" fill="#fcec62" filter="url(#soft-glow)"/>
+  </g>
+
+  <g filter="url(#track-shadow)" transform="rotate(-5 450 338)">
+    <path fill="url(#track)" fill-rule="evenodd" d="M231 137h438c104 0 188 84 188 188v25c0 104-84 188-188 188H231C127 538 43 454 43 350v-25c0-104 84-188 188-188Zm16 112c-49 0-89 40-89 89s40 89 89 89h406c49 0 89-40 89-89s-40-89-89-89H247Z"/>
+
+    <g clip-path="url(#track-shape)" fill="none" stroke="#fff" stroke-opacity=".64">
+      <rect x="66" y="160" width="768" height="355" rx="166" stroke-width="2"/>
+      <rect x="87" y="181" width="726" height="313" rx="145" stroke-width="2"/>
+      <rect x="109" y="203" width="682" height="269" rx="123" stroke-width="2"/>
+      <rect x="131" y="225" width="638" height="225" rx="101" stroke-width="2"/>
+      <rect x="153" y="247" width="594" height="181" rx="79" stroke-width="2"/>
+    </g>
+
+    <rect x="158" y="249" width="584" height="178" rx="89" fill="url(#infield)"/>
+    <path d="M249 271h402c37 0 67 30 67 67s-30 67-67 67H249c-37 0-67-30-67-67s30-67 67-67Z" fill="none" stroke="url(#rail)" stroke-width="3"/>
+    <path d="M275 283h350M275 393h350" stroke="#fff" stroke-opacity=".08"/>
+    <ellipse cx="450" cy="338" rx="112" ry="42" fill="#0b1c17" stroke="#fcec62" stroke-opacity=".13"/>
+    <path d="M338 338h224M450 296v84" stroke="#fff" stroke-opacity=".06"/>
+
+    <g transform="translate(612 137)">
+      <path d="M0 0v112" stroke="#fff" stroke-width="4"/>
+      <g opacity=".92">
+        <rect x="0" width="12" height="14" fill="#fff"/>
+        <rect x="12" width="12" height="14" fill="#150a56"/>
+        <rect x="24" width="12" height="14" fill="#fff"/>
+        <rect x="36" width="12" height="14" fill="#150a56"/>
+        <rect x="48" width="12" height="14" fill="#fff"/>
+        <rect x="60" width="12" height="14" fill="#150a56"/>
+        <rect x="72" width="12" height="14" fill="#fff"/>
+        <rect x="84" width="12" height="14" fill="#150a56"/>
+        <rect x="0" y="14" width="12" height="14" fill="#150a56"/>
+        <rect x="12" y="14" width="12" height="14" fill="#fff"/>
+        <rect x="24" y="14" width="12" height="14" fill="#150a56"/>
+        <rect x="36" y="14" width="12" height="14" fill="#fff"/>
+        <rect x="48" y="14" width="12" height="14" fill="#150a56"/>
+        <rect x="60" y="14" width="12" height="14" fill="#fff"/>
+        <rect x="72" y="14" width="12" height="14" fill="#150a56"/>
+        <rect x="84" y="14" width="12" height="14" fill="#fff"/>
+      </g>
+    </g>
+
+    <g fill="#fcec62" opacity=".9">
+      <path d="M544 166h22v4h-22zM518 188h22v4h-22zM491 210h22v4h-22zM465 232h22v4h-22z"/>
+      <path d="M299 504h22v4h-22zM326 482h22v4h-22zM352 460h22v4h-22zM379 438h22v4h-22z"/>
+    </g>
+  </g>
+
+  <path d="M112 612c154-47 526-47 676 0" fill="none" stroke="#7667dc" stroke-opacity=".16" stroke-width="2"/>
+  <path d="M160 624c138-29 442-29 580 0" fill="none" stroke="#fcec62" stroke-opacity=".1"/>
+</svg>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft, CheckCircle2, Medal, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ShieldCheck, UserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AssessmentForm } from "./components/AssessmentForm";
@@ -117,7 +117,7 @@ function TrackAndFieldAssessmentPage() {
         <section className="relative overflow-hidden bg-[#150A56] pb-14 text-white sm:pb-18">
           <div className="absolute inset-0 [background-image:radial-gradient(circle_at_10%_20%,rgba(252,236,98,0.18)_0,transparent_25%),radial-gradient(circle_at_70%_100%,rgba(255,188,125,0.12)_0,transparent_34%),linear-gradient(120deg,#150A56_0%,#21156B_54%,#0C120F_100%)]" />
           <div className="absolute inset-y-0 right-0 w-3/5 opacity-15 [background-image:repeating-linear-gradient(105deg,transparent_0,transparent_48px,rgba(255,255,255,.55)_49px,transparent_50px)]" />
-          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:gap-14 lg:py-20">
+          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_450px] lg:items-center lg:gap-14 lg:py-20">
             <div className="max-w-2xl">
               <p className="mb-4 text-xs font-bold tracking-[0.18em] text-[#FCEC62] uppercase">{t("trackAndField.hero.eyebrow")}</p>
               <h1 className="font-display text-5xl leading-[0.95] font-bold tracking-wide uppercase sm:text-6xl lg:text-7xl">{t("trackAndField.hero.title")}</h1>
@@ -126,12 +126,27 @@ function TrackAndFieldAssessmentPage() {
                 <ShieldCheck aria-hidden="true" className="size-5 text-[#FCEC62]" />{t("hero.trust")}
               </p>
             </div>
-            <div className="relative mx-auto grid aspect-square w-full max-w-[330px] place-items-center rounded-full border-[22px] border-white/10 bg-white/5 shadow-2xl shadow-black/30">
-              <div className="absolute inset-5 rounded-full border border-dashed border-[#FCEC62]/40" />
-              <Medal aria-hidden="true" className="size-28 text-[#FCEC62]" strokeWidth={1.2} />
-              <div className="absolute -right-3 bottom-5 rounded-2xl border border-white/70 bg-white/95 px-5 py-4 text-[#150A56] shadow-xl">
-                <p className="font-bold">{t("advisor.name")}</p>
-                <p className="mt-0.5 text-xs font-semibold text-slate-600">{t("advisor.role")}</p>
+            <div className="relative mx-auto w-full max-w-[450px]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-white/15 bg-[#0C120F] shadow-2xl shadow-black/35 sm:rounded-[2rem]">
+                <img
+                  src="/media/track-and-field-stadium.svg"
+                  alt="Overhead view of a stadium running track"
+                  fetchPriority="high"
+                  className="h-full w-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#150A56]/45 via-transparent to-white/5" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
+              </div>
+              <div className="relative mx-3 -mt-14 rounded-2xl border border-white/70 bg-white/95 p-4 text-[#0C120F] shadow-xl shadow-black/20 backdrop-blur sm:mx-5 sm:p-5">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="grid size-12 shrink-0 place-items-center rounded-full bg-[#150A56] text-[#FCEC62] ring-4 ring-[#FCEC62]/25 sm:size-14">
+                    <UserRound aria-hidden="true" className="size-6 sm:size-7" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="truncate font-bold text-[#150A56]">{t("advisor.name")}</p>
+                    <p className="mt-0.5 text-xs font-semibold text-slate-600 sm:text-sm">{t("advisor.role")}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
