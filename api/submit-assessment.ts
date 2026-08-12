@@ -87,19 +87,20 @@ export default async function submitAssessment(request: ApiRequest, response: Ap
 
     const deal = await createDeal(config, dealTitle, person.id, stageId);
     const submittedAt = new Date().toISOString();
-    const note = isTrackAndField
-      ? buildTrackAndFieldAssessmentNote(
-          payload.answers,
-          payload.context.language,
-          submittedAt,
-          payload.context.clientSubmissionId,
-        )
-      : buildAssessmentNote(
-          payload.answers,
-          payload.context.language,
-          submittedAt,
-          payload.context.clientSubmissionId,
-        );
+    const note =
+      "sport" in payload.answers
+        ? buildTrackAndFieldAssessmentNote(
+            payload.answers,
+            payload.context.language,
+            submittedAt,
+            payload.context.clientSubmissionId,
+          )
+        : buildAssessmentNote(
+            payload.answers,
+            payload.context.language,
+            submittedAt,
+            payload.context.clientSubmissionId,
+          );
 
     try {
       await createDealNote(config, deal.id, person.id, note);
