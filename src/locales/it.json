@@ -169,6 +169,19 @@
     "body": "Le informazioni inviate tramite questa valutazione vengono utilizzate da Venture Sports USA per valutare potenziali opportunità di reclutamento universitario e comunicare con l’atleta o il tutore. Non inviare dati sensibili non richiesti. I dati vengono conservati nel CRM di Venture Sports USA e devono essere conservati o cancellati in conformità con la politica sulla privacy ufficiale dell’organizzazione e la normativa applicabile.",
     "back": "Torna alla valutazione"
   },
+  "trackAndField": {
+    "hero": { "eyebrow": "Recruiting internazionale di atletica", "title": "Porta il tuo talento in un college statunitense.", "description": "Condividi risultati verificati e profilo accademico per valutare le tue opportunità." },
+    "progress": { "athlete": "Atleta", "sport": "Atletica", "academics": "Studi", "goals": "Obiettivi e consenso" },
+    "sections": { "athleteTitle": "Informazioni sull’atleta", "athleteDescription": "Usa i dati legali e i migliori recapiti.", "sportTitle": "Informazioni di atletica", "sportDescription": "Descrivi gare, risultati ufficiali ed esperienza.", "academicsTitle": "Informazioni accademiche", "academicsDescription": "Voti e test aiutano a trovare il college giusto.", "goalsTitle": "Informazioni sul college", "goalsDescription": "Condividi piani, priorità e obiettivi." },
+    "fields": {
+      "gender": "Genere", "eventCategory": "Disciplina", "primaryEvent": "Gara principale", "secondaryEvents": "Gare secondarie", "personalBests": "Record personali ufficiali", "personalBestsHelp": "Aggiungi una voce per ogni gara.", "performanceNumber": "Prestazione {{number}}", "event": "Gara", "performance": "Record personale ufficiale", "units": "Unità", "wind": "Vento (se applicabile)", "date": "Data del risultato", "competition": "Competizione", "verifiedResultsLink": "Link a risultati verificati o profilo ufficiale", "verifiedResultsHelp": "Athletic.net, MileSplit, World Athletics, federazione o altro profilo ufficiale.", "currentTeam": "Scuola, club o gruppo di allenamento attuale", "competitionLevel": "Livello competitivo attuale", "experienceYears": "Anni di competizione", "representativeExperience": "Esperienza nazionale, regionale o statale", "achievements": "Premi, classifiche, medaglie e risultati", "competitionVideo": "Link video di gara", "fieldVideoHelp": "Il video è obbligatorio per le gare di campo.", "injuries": "Infortuni o limitazioni attuali", "academicAverage": "GPA o media accademica attuale", "gpaScale": "Scala GPA o voti", "testScore": "Punteggio SAT/ACT", "startYear": "Anno desiderato di iscrizione negli USA"
+    },
+    "options": { "gender": { "female": "Femminile", "male": "Maschile", "nonBinary": "Non binario", "preferNot": "Preferisco non dirlo" }, "category": { "track": "Pista", "field": "Campo", "combined": "Prove multiple", "crossCountry": "Corsa campestre" } },
+    "placeholders": { "events": "es. 100 m, salto in alto", "secondaryEvents": "Separa più gare con virgole", "performance": "es. 10.85 o 6.20", "units": "es. secondi, metri, punti" },
+    "actions": { "addPerformance": "Aggiungi risultato", "removePerformance": "Rimuovi risultato" },
+    "validation": { "fieldVideo": "È richiesto un video per le gare di campo." },
+    "confirmation": { "message": "Venture Sports USA esaminerà il tuo profilo atletico e accademico. Se idoneo, ti contatteremo entro 2–3 giorni lavorativi." }
+  },
   "footer": {
     "secure": "Le tue informazioni vengono gestite in modo sicuro.",
     "copyright": "© {{year}} Venture Sports USA"

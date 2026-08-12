@@ -1,4 +1,4 @@
-import type { AssessmentAnswers } from "./assessment-schema";
+import type { TrackAndFieldAnswers, VolleyballAnswers } from "./assessment-schema";
 
 const escapeHtml = (value: unknown) =>
   String(value ?? "")
@@ -30,7 +30,7 @@ const section = (title: string, rows: string[]) =>
   `<h3>${escapeHtml(title)}</h3><table>${rows.join("")}</table>`;
 
 export function buildAssessmentNote(
-  answers: AssessmentAnswers,
+  answers: VolleyballAnswers,
   language: string,
   submittedAt: string,
   clientSubmissionId: string,
@@ -91,6 +91,84 @@ export function buildAssessmentNote(
       row("Selected language", language),
       row("Submission date (UTC)", submittedAt),
       row("Sport", "Volleyball"),
+      row("Recruiting advisor/deal owner", "Sergio Zacarias"),
+      row("Submission reference", clientSubmissionId),
+    ]),
+  ].join("");
+}
+
+export function buildTrackAndFieldAssessmentNote(
+  answers: TrackAndFieldAnswers,
+  language: string,
+  submittedAt: string,
+  clientSubmissionId: string,
+) {
+  const personalBestSections = answers.personalBests.map((personalBest, index) =>
+    section(`Official personal best ${index + 1}`, [
+      row("Event", personalBest.event),
+      row("Performance", personalBest.performance),
+      row("Units", personalBest.units),
+      row("Wind reading", personalBest.wind),
+      row("Date achieved", personalBest.date),
+      row("Competition", personalBest.competition),
+    ]),
+  );
+
+  return [
+    "<h2>College Track &amp; Field Application</h2>",
+    section("Athlete and contact", [
+      row("Full name", answers.fullName),
+      row("Email", answers.email),
+      row("Phone/WhatsApp", answers.whatsapp),
+      row("Date of birth", answers.birthDate),
+      row("Gender", answers.gender),
+      row("Nationality", answers.nationality),
+      row("Country of residence", answers.residenceCountry),
+      row("Height", answers.height),
+      row("Graduation year", answers.graduationYear),
+    ]),
+    section("Track & field profile", [
+      row("Sport", answers.sport),
+      row("Discipline", answers.eventCategory),
+      row("Primary event", answers.primaryEvent),
+      row("Secondary events", answers.secondaryEvents),
+    ]),
+    ...personalBestSections,
+    section("Competition background", [
+      linkRow("Verified results / official profile", answers.verifiedResultsLink),
+      row("Current school, club, or training group", answers.currentTeam),
+      row("Current competition level", answers.competitionLevel),
+      row("Years competing", answers.experienceYears),
+      row("National, regional, or state-level experience", answers.representativeExperience),
+      row("Awards, rankings, medals, and major achievements", answers.achievements),
+      row("Coach name", answers.coachName),
+      row("Coach contact", answers.coachContact),
+      linkRow("Highlight or competition video", answers.competitionVideo),
+      row("Current injuries or limitations", answers.injuries),
+    ]),
+    section("Academic and college information", [
+      row("Current GPA or academic average", answers.academicAverage),
+      row("GPA scale", answers.gpaScale),
+      row("SAT/ACT score", answers.testScore),
+      row("Intended major", answers.intendedMajor),
+      row("Desired U.S. enrollment year", answers.startYear),
+      row("Estimated annual family budget", answers.annualBudget),
+      row("Main goal in the United States", answers.mainGoal),
+      row("Biggest recruiting concern", answers.concern),
+      row("How athlete heard about Venture Sports USA", answers.marketingSource),
+    ]),
+    section("Parent or guardian", [
+      row("Name", answers.guardianName),
+      row("Email", answers.guardianEmail),
+      row("WhatsApp", answers.guardianWhatsapp),
+      row("Guardian consent", answers.guardianConsent),
+    ]),
+    section("Consent and submission record", [
+      row("Privacy/GDPR consent", answers.privacyConsent),
+      row("Contact consent", answers.contactConsent),
+      row("Selected language", language),
+      row("Submission date (UTC)", submittedAt),
+      row("Sport", answers.sport),
       row("Recruiting advisor/deal owner", "Sergio Zacarias"),
       row("Submission reference", clientSubmissionId),
     ]),

@@ -60,7 +60,77 @@ const validBody = () => ({
   },
 });
 
-function request(body = validBody()) {
+const trackAndFieldAnswers = {
+  sport: "Track & Field",
+  fullName: "Test Runner",
+  email: "runner@example.test",
+  whatsapp: "+1 555 123 4567",
+  birthDate: "2004-04-12",
+  gender: "female",
+  nationality: "Brazilian",
+  residenceCountry: "Brazil",
+  height: "170 cm",
+  graduationYear: "2027",
+  eventCategory: "track",
+  primaryEvent: "100m",
+  secondaryEvents: "200m, 4x100m",
+  personalBests: [
+    {
+      event: "100m",
+      performance: "11.45",
+      units: "seconds",
+      wind: "+1.2 m/s",
+      date: "2026-06-10",
+      competition: "National Championships",
+    },
+    {
+      event: "200m",
+      performance: "23.50",
+      units: "seconds",
+      wind: "-0.3 m/s",
+      date: "2026-05-20",
+      competition: "State Championships",
+    },
+  ],
+  verifiedResultsLink: "https://worldathletics.org/athletes/example",
+  currentTeam: "Test Athletics Club",
+  competitionLevel: "National",
+  experienceYears: "7",
+  representativeExperience: "National U20 team",
+  achievements: "National silver medal",
+  coachName: "Track Coach",
+  coachContact: "coach@example.test",
+  competitionVideo: "https://example.test/race",
+  injuries: "",
+  academicAverage: "3.7",
+  gpaScale: "4.0",
+  testScore: "SAT 1320",
+  intendedMajor: "Engineering",
+  startYear: "2027",
+  annualBudget: "20to30",
+  mainGoal: "scholarship",
+  concern: "Finding the right event group",
+  marketingSource: "coach",
+  guardianName: "",
+  guardianEmail: "",
+  guardianWhatsapp: "",
+  guardianConsent: false,
+  privacyConsent: true,
+  contactConsent: true,
+};
+
+const validTrackAndFieldBody = () => ({
+  answers: trackAndFieldAnswers,
+  context: {
+    language: "en",
+    sourceRoute: "/sergiozacarias/track-and-field",
+    formStartedAt: Date.now() - 10_000,
+    clientSubmissionId: crypto.randomUUID(),
+    website: "",
+  },
+});
+
+function request(body: unknown = validBody()) {
   return {
     method: "POST",
     headers: {
@@ -191,6 +261,63 @@ describe("POST /api/submit-assessment", () => {
 
     expect(res.statusCode).toBe(400);
     expect(res.body).toEqual({ success: false, code: "invalid_submission" });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("creates a separate Track & Field Deal with every answer in its note", async () => {
+    const calls: Array<{ url: string; method: string; body?: Record<string, unknown> }> = [];
+    vi.stubGlobal("fetch", vi.fn(async (input: string | URL | Request, init?: RequestInit) => {
+      const url = String(input);
+      const method = init?.method ?? "GET";
+      const body = init?.body ? (JSON.parse(String(init.body)) as Record<string, unknown>) : undefined;
+      calls.push({ url, method, body });
+      if (url.endsWith("/api/v2/stages/7")) {
+        return jsonResponse({ success: true, data: { id: 7, name: "NEW PLAYER (LEAD)", pipeline_id: 2 } });
+      }
+      if (url.includes("/api/v2/persons/search")) return jsonResponse({ success: true, data: { items: [] } });
+      if (url.endsWith("/api/v2/persons") && method === "POST") {
+        return jsonResponse({ success: true, data: { id: 188 } });
+      }
+      if (url.includes("/api/v2/deals/search")) return jsonResponse({ success: true, data: { items: [] } });
+      if (url.endsWith("/api/v2/deals") && method === "POST") {
+        return jsonResponse({ success: true, data: { id: 1901 } });
+      }
+      if (url.endsWith("/api/v1/notes") && method === "POST") {
+        return jsonResponse({ success: true, data: { id: 1902 } });
+      }
+      throw new Error(`Unexpected mocked request: ${method} ${url}`);
+    }));
+
+    const res = response();
+    await submitAssessment(request(validTrackAndFieldBody()) as never, res as never);
+
+    expect(res.statusCode).toBe(201);
+    expect(res.body).toEqual({ success: true, reference: "TF-1901" });
+    const dealCall = calls.find(({ url, method }) => url.endsWith("/api/v2/deals") && method === "POST");
+    expect(dealCall?.body).toMatchObject({
+      title: "Test Runner - College Track & Field Application",
+      owner_id: 42,
+      pipeline_id: 2,
+      stage_id: 7,
+    });
+    const note = String(calls.find(({ url }) => url.endsWith("/api/v1/notes"))?.body?.content);
+    expect(note).toContain("Sport</strong></td><td style=\"padding:5px 0\">Track &amp; Field");
+    expect(note).toContain("National Championships");
+    expect(note).toContain("State Championships");
+    expect(note).toContain("SAT 1320");
+    expect(note).toContain("Current injuries or limitations");
+  });
+
+  it("rejects a field-event submission without competition video", async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+    const body = validTrackAndFieldBody();
+    body.answers = { ...body.answers, eventCategory: "field", competitionVideo: "" };
+    const res = response();
+
+    await submitAssessment(request(body) as never, res as never);
+
+    expect(res.statusCode).toBe(400);
     expect(fetchMock).not.toHaveBeenCalled();
   });
 

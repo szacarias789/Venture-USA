@@ -1,4 +1,5 @@
 import type { AssessmentSubmissionRequest } from "./assessment";
+import type { TrackAndFieldSubmissionRequest } from "./track-and-field-assessment";
 
 export interface SubmissionResult {
   id: string;
@@ -10,7 +11,9 @@ export class SubmissionError extends Error {
   }
 }
 
-export async function submitAssessment(payload: AssessmentSubmissionRequest): Promise<SubmissionResult> {
+export async function submitAssessment(
+  payload: AssessmentSubmissionRequest | TrackAndFieldSubmissionRequest,
+): Promise<SubmissionResult> {
   const response = await fetch("/api/submit-assessment", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

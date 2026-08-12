@@ -1,6 +1,6 @@
-# Venture Sports USA — Volleyball Assessment
+# Venture Sports USA — Athlete Assessments
 
-A standalone, mobile-first international volleyball recruiting assessment built with Vite, React, TypeScript, React Router, React Hook Form, Zod, Tailwind CSS, shadcn-style UI primitives, i18next, Vercel Functions, and Pipedrive.
+Mobile-first international volleyball and Track & Field recruiting assessments built with Vite, React, TypeScript, React Router, React Hook Form, Zod, Tailwind CSS, i18next, Vercel Functions, and Pipedrive.
 
 ## Local preview
 
@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/sergiozacarias`. Vite previews the frontend; production submissions require the Vercel Function and its server-only environment variables. In-progress answers are retained in localStorage under `venture-volleyball-assessment-draft` and removed only after Pipedrive confirms the deal and note.
+Open `http://localhost:5173/sergiozacarias` for volleyball or `http://localhost:5173/sergiozacarias/track-and-field` for Track & Field. Production submissions require the Vercel Function and its server-only environment variables. Each assessment retains its own in-progress draft and clears it only after Pipedrive confirms the deal and note.
 
 ## Languages
 
@@ -26,7 +26,7 @@ The volleyball hero image in `public/media/volleyball-hero-action.webp` is an or
 
 ## Pipedrive production integration
 
-`POST /api/submit-assessment` validates the complete payload server-side, checks the configured pipeline/stage, finds or creates a Person, prevents duplicate application Deals, creates the Deal, and attaches the formatted assessment note. It sends the API token only in Pipedrive's `x-api-token` server-to-server header.
+`POST /api/submit-assessment` validates either complete sport-specific payload server-side, checks the configured pipeline/stage, finds or creates a Person, prevents duplicate application Deals, creates the sport-specific Deal, and attaches the formatted assessment note. It sends the API token only in Pipedrive's `x-api-token` server-to-server header.
 
 Required Vercel environment variables:
 

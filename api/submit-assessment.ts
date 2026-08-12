@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { ZodError } from "zod";
 import { assessmentRequestSchema } from "../server/assessment-schema.js";
-import { buildAssessmentNote } from "../server/assessment-note.js";
+import { buildAssessmentNote, buildTrackAndFieldAssessmentNote } from "../server/assessment-note.js";
 import {
   createDeal,
   createDealNote,
@@ -77,19 +77,29 @@ export default async function submitAssessment(request: ApiRequest, response: Ap
 
     const config = getPipedriveConfig();
     const stageId = await resolveStageId(config);
+    const isTrackAndField = "sport" in payload.answers && payload.answers.sport === "Track & Field";
 
     const person = await findOrCreatePerson(config, payload.answers);
-    const dealTitle = `${payload.answers.fullName} - College Volleyball Application`;
+    const dealTitle = `${payload.answers.fullName} - College ${
+      isTrackAndField ? "Track & Field" : "Volleyball"
+    } Application`;
     if (await findDuplicateDeal(config, dealTitle, person.id)) throw new DuplicateSubmissionError();
 
     const deal = await createDeal(config, dealTitle, person.id, stageId);
     const submittedAt = new Date().toISOString();
-    const note = buildAssessmentNote(
-      payload.answers,
-      payload.context.language,
-      submittedAt,
-      payload.context.clientSubmissionId,
-    );
+    const note = isTrackAndField
+      ? buildTrackAndFieldAssessmentNote(
+          payload.answers,
+          payload.context.language,
+          submittedAt,
+          payload.context.clientSubmissionId,
+        )
+      : buildAssessmentNote(
+          payload.answers,
+          payload.context.language,
+          submittedAt,
+          payload.context.clientSubmissionId,
+        );
 
     try {
       await createDealNote(config, deal.id, person.id, note);
@@ -101,7 +111,7 @@ export default async function submitAssessment(request: ApiRequest, response: Ap
     markSubmissionCompleted(payload.context.clientSubmissionId);
     return response.status(201).json({
       success: true,
-      reference: `VB-${deal.id}`,
+      reference: `${isTrackAndField ? "TF" : "VB"}-${deal.id}`,
     });
   } catch (error) {
     if (error instanceof SyntaxError || error instanceof ZodError) {

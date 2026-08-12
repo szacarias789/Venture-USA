@@ -169,6 +169,66 @@
     "body": "The information submitted through this assessment is used by Venture Sports USA to evaluate potential university recruiting opportunities and communicate with the athlete or guardian. Do not submit sensitive information that is not requested. It is stored in Venture Sports USA’s CRM and must be retained or deleted in accordance with the organization’s formal privacy policy and applicable law.",
     "back": "Back to assessment"
   },
+  "trackAndField": {
+    "hero": {
+      "eyebrow": "International track & field recruiting",
+      "title": "Take your talent to a U.S. college.",
+      "description": "Share your verified performances and academic profile so our team can evaluate your college opportunities."
+    },
+    "progress": { "athlete": "Athlete", "sport": "Track & field", "academics": "Academics", "goals": "Goals & consent" },
+    "sections": {
+      "athleteTitle": "Athlete information",
+      "athleteDescription": "Use the athlete’s legal information and best contact details.",
+      "sportTitle": "Track & field information",
+      "sportDescription": "Tell us about your events, official results, experience and support team.",
+      "academicsTitle": "Academic information",
+      "academicsDescription": "Your grades and testing help determine the right U.S. college fit.",
+      "goalsTitle": "College information",
+      "goalsDescription": "Share your plans, priorities and recruiting goals."
+    },
+    "fields": {
+      "gender": "Gender",
+      "eventCategory": "Discipline",
+      "primaryEvent": "Primary event",
+      "secondaryEvents": "Secondary events",
+      "personalBests": "Official personal bests",
+      "personalBestsHelp": "Add one entry for every event you compete in.",
+      "performanceNumber": "Performance {{number}}",
+      "event": "Event",
+      "performance": "Official personal best",
+      "units": "Units",
+      "wind": "Wind reading (when applicable)",
+      "date": "Date achieved",
+      "competition": "Competition where achieved",
+      "verifiedResultsLink": "Verified results or official profile link",
+      "verifiedResultsHelp": "Athletic.net, MileSplit, World Athletics, federation results, or another official profile.",
+      "currentTeam": "Current school, club, or training group",
+      "competitionLevel": "Current competition level",
+      "experienceYears": "Years competing",
+      "representativeExperience": "National, regional, or state-level experience",
+      "achievements": "Awards, rankings, medals, and major achievements",
+      "competitionVideo": "Highlight or competition video link",
+      "fieldVideoHelp": "A competition video is required for field-event athletes.",
+      "injuries": "Current injuries or limitations",
+      "academicAverage": "Current GPA or academic average",
+      "gpaScale": "GPA or grading scale",
+      "testScore": "SAT/ACT score",
+      "startYear": "Desired U.S. enrollment year"
+    },
+    "options": {
+      "gender": { "female": "Female", "male": "Male", "nonBinary": "Non-binary", "preferNot": "Prefer not to say" },
+      "category": { "track": "Track", "field": "Field", "combined": "Combined events", "crossCountry": "Cross country" }
+    },
+    "placeholders": {
+      "events": "e.g. 100m, high jump, decathlon",
+      "secondaryEvents": "Separate multiple events with commas",
+      "performance": "e.g. 10.85 or 6.20",
+      "units": "e.g. seconds, meters, points"
+    },
+    "actions": { "addPerformance": "Add result", "removePerformance": "Remove result" },
+    "validation": { "fieldVideo": "A competition video is required for field events." },
+    "confirmation": { "message": "Venture Sports USA will review your track & field and academic profile. If your profile qualifies, our team will contact you within 2–3 business days." }
+  },
   "footer": {
     "secure": "Your information is handled securely.",
     "copyright": "© {{year}} Venture Sports USA"
