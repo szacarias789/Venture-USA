@@ -41,6 +41,10 @@ function PageChrome({ children }: { children: React.ReactNode }) {
 function AssessmentPage() {
   const { t } = useTranslation();
 
+  useEffect(() => {
+    document.title = "Venture Sports USA | Volleyball Assessment";
+  }, []);
+
   return (
     <PageChrome>
       <main>
@@ -110,6 +114,10 @@ function AssessmentPage() {
 
 function TrackAndFieldAssessmentPage() {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = "Venture Sports USA | Track & Field Assessment";
+  }, []);
 
   return (
     <PageChrome>
