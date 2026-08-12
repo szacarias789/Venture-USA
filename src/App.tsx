@@ -129,12 +129,13 @@ function TrackAndFieldAssessmentPage() {
             <div className="relative mx-auto w-full max-w-[450px]">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-white/15 bg-[#0C120F] shadow-2xl shadow-black/35 sm:rounded-[2rem]">
                 <img
-                  src="/media/track-and-field-stadium.svg"
-                  alt="Overhead view of a stadium running track"
+                  src="/media/track-field-hero.png"
+                  alt="Running track with NCAA, NAIA, and NJCAA banners"
                   fetchPriority="high"
                   className="h-full w-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#150A56]/45 via-transparent to-white/5" />
+                <div className="absolute inset-0 bg-[#150A56]/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#150A56]/35 via-transparent to-white/5" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
               </div>
               <div className="relative mx-3 -mt-14 rounded-2xl border border-white/70 bg-white/95 p-4 text-[#0C120F] shadow-xl shadow-black/20 backdrop-blur sm:mx-5 sm:p-5">
